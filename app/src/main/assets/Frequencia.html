@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"> <!-- Adicione esta linha para definir a codificação UTF-8 -->
+    <title>Tela de Frequência de Funcionários</title>
+
+    <!-- Inclua o SDK do Firebase (versão 8.x.x) -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-database.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        h1 {
+    background-color: #333;
+    color: #fff;
+    padding: 10px; /* Reduzi o padding para o título */
+    text-align: center;
+    margin: 0;
+    font-size: 15px; /* Defina o tamanho da fonte desejado, por exemplo, 24px */
+}
+
+
+        form {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 5px;
+            width: 50%; /* Defina a largura desejada para o formulário */
+            margin: 20px auto;
+        }
+
+        form label, select, input[type="datetime-local"] {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        form input[type="text"], select, input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        /* Estilos para alinhar os checkboxes lado a lado */
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+        }
+
+        form input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        form input[type="submit"], button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #666;
+        }
+
+        table {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            width: 90%;
+            margin: 20px auto;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        table th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        table td {
+            background-color: #f4f4f4;
+        }
+
+        #filterDiv {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+    }
+
+    #filterDiv label {
+        margin-right: 5px;
+    }
+
+    #filterDiv input[type="datetime-local"] {
+        width: 150px; /* Defina a largura desejada para os campos de data e hora */
+        margin-right: 5px;
+    }
+
+    #filterDiv button {
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    #filterDiv button:hover {
+        background-color: #555;
+    }
+    </style>
+</head>
+<body>
+<h1>Tela de Frequência de Funcionários</h1>
+<form id="registroForm">
+    <label for="matricula">Matrícula:</label>
+    <input type="text" id="matricula" name="matricula" required />
+    <br />
+
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" name="nome" required />
+    <br />
+
+    <label for="filtro">Filtro:</label>
+    <select id="filtro" name="filtro">
+        <option value="Op. Carregadeira">Op. Carregadeira</option>
+        <option value="Op. Bell">Op. Bell</option>
+        <option value="Tratorista">Tratorista</option>
+        <option value="Motorista">Motorista</option>
+        <option value="Maquina Pesadas">Máquina Pesadas</option>
+    </select>
+    <br />
+
+    <label for="atestado">Observação:</label>
+    <div class="checkbox-group">
+        <label for="atestado">Atestado:</label>
+        <input type="checkbox" id="atestado" name="atestado" />
+
+        <label for="abono">Abono:</label>
+        <input type="checkbox" id="abono" name="abono" />
+
+        <label for="falta">Falta:</label>
+        <input type="checkbox" id="falta" name="falta" />
+
+        <label for="faltaJustificada">Falta Justificada:</label>
+        <input type="checkbox" id="faltaJustificada" name="faltaJustificada" />
+    </div>
+    <br />
+
+    <label for="dataHoraInicial">Data e Hora Inicial:</label>
+    <input type="datetime-local" id="dataHoraInicial" name="dataHoraInicial" required />
+    <br />
+
+    <label for="dataHoraFinal">Data e Hora Final:</label>
+    <input type="datetime-local" id="dataHoraFinal" name="dataHoraFinal" required />
+    <br />
+
+    <input type="submit" value="Registrar Frequência" />
+    <button type="button" id="cancelar">Cancelar</button>
+</form>
+
+<div id="searchDiv">
+    <input type="text" id="searchInput" placeholder="Pesquisar na tabela" oninput="pesquisarTabela()">
+</div>
+
+<div id="filterDiv" style="display: flex; align-items: center;">
+    <label for="dataInicial" style="margin-right: 10px;">Data Inicial:</label>
+    <input type="date" id="dataInicial" style="margin-right: 10px;" placeholder="Data Inicial">
+
+    <label for="dataFinal" style="margin-right: 10px;">Data Final:</label>
+    <input type="date" id="dataFinal" style="margin-right: 10px;" placeholder="Data Final">
+
+    <button onclick="filtrarPorDataHora()">Filtrar</button>
+</div>
+<h2> </h2>
+<table id="tabelaRegistros">
+    <thead>
+    <tr>
+        <th>Matrícula</th>
+        <th>Nome</th>
+        <th>Função</th>
+        <th>Atestado</th>
+        <th>Abono</th>
+        <th>Falta</th>
+        <th>Data e Hora Inicial</th>
+        <th>Data e Hora Final</th>
+        <th>Horas Trabalhads</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody id="corpoTabela">
+    <!-- Os registros serão adicionados aqui -->
+    </tbody>
+</table>
+
+<script>
+        // Configure o Firebase com suas credenciais
+        const firebaseConfig = {
+            apiKey: "AIzaSyBiyob19vvhs2j1qjHqlPbIxSyjvcQ2juw",
+      authDomain: "usina-operacional.firebaseapp.com",
+      databaseURL: "https://usina-operacional-default-rtdb.firebaseio.com",
+      projectId: "usina-operacional",
+      storageBucket: "usina-operacional.appspot.com",
+      messagingSenderId: "1034313245813",
+      appId: "1:1034313245813:android:7c3547c2d6b8277a0e043c"
+        };
+
+        // Inicialize o Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        const form = document.getElementById("registroForm");
+        const tabela = document.getElementById("tabelaRegistros");
+        const corpoTabela = document.getElementById("corpoTabela");
+
+        form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const matricula = document.getElementById("matricula").value;
+    const nome = document.getElementById("nome").value;
+    const filtro = document.getElementById("filtro").value;
+    const atestado = document.getElementById("atestado").checked;
+    const abono = document.getElementById("abono").checked;
+    const falta = document.getElementById("falta").checked;
+
+    // Obtenha a data e hora atual no formato do Brasil
+    const dataHoraAtual = new Date();
+    const dataHoraFormatada = dataHoraAtual.toLocaleString("pt-BR");
+
+    const dataHoraInicial = document.getElementById("dataHoraInicial").value;
+    const dataHoraFinal = document.getElementById("dataHoraFinal").value;
+
+    const registro = {
+        matricula,
+        nome,
+        filtro,
+        atestado,
+        abono,
+        falta,
+        dataHoraInicial,
+        dataHoraFinal,
+        dataHoraAtual: dataHoraFormatada, // Adicione a data e hora atual formatada
+    };
+
+    // Crie uma referência para o Firebase Realtime Database
+    const databaseRef = database.ref();
+    const registrosRef = databaseRef.child("registros");
+
+    // Use o método push para adicionar o registro ao Firebase
+    registrosRef.push(registro);
+
+    // Limpe o formulário
+    form.reset();
+});
+
+        const cancelarBotao = document.getElementById("cancelar");
+
+cancelarBotao.addEventListener("click", function () {
+    form.reset(); // Limpa o formulário
+});
+
+// Recupere os registros do Firebase e exiba na tabela
+const registrosRef = database.ref("registros");
+registrosRef.on("value", function(snapshot) {
+    corpoTabela.innerHTML = ""; // Limpa a tabela antes de atualizar os dados
+
+    const registros = []; // Array para armazenar os registros em ordem reversa
+
+    snapshot.forEach(function(childSnapshot) {
+        const registro = childSnapshot.val();
+        const key = childSnapshot.key;
+        registros.unshift({ key, registro }); // Adicione o registro no início do array
+    });
+
+    registros.forEach(function(record) {
+        const registro = record.registro;
+        const key = record.key;
+
+        // Formate as datas e horas usando o Moment.js
+        const dataHoraInicialBrasil = moment(registro.dataHoraInicial).format("DD/MM/YYYY HH:mm");
+        const dataHoraFinalBrasil = moment(registro.dataHoraFinal).format("DD/MM/YYYY HH:mm");
+
+        // Calcule o tempo de serviço em minutos
+        const dataHoraInicial = moment(registro.dataHoraInicial);
+        const dataHoraFinal = moment(registro.dataHoraFinal);
+        const diffMinutes = dataHoraFinal.diff(dataHoraInicial, 'minutes');
+        const hours = Math.floor(diffMinutes / 60);
+        const minutes = diffMinutes % 60;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${registro.matricula}</td>
+            <td>${registro.nome}</td>
+            <td>${registro.filtro}</td>
+            <td>${registro.atestado ? 'Sim' : 'Não'}</td>
+            <td>${registro.abono ? 'Sim' : 'Não'}</td>
+            <td>${registro.falta ? 'Sim' : 'Não'}</td>
+            <td>${dataHoraInicialBrasil}</td>
+            <td>${dataHoraFinalBrasil}</td>
+            <td>${hours}h ${minutes}min</td>
+            <td>
+            <button onclick="editarRegistro('${key}')">Editar</button>
+            <button onclick="excluirRegistro('${key}')">Excluir</button>
+        </td>
+
+        `;
+
+        corpoTabela.appendChild(row);
+    });
+});
+
+// Função para editar um registro
+function editarRegistro(key) {
+    // Recupere os dados do registro com base na chave 'key' do Firebase
+    const registroRef = database.ref(`registros/${key}`);
+
+    registroRef.once('value', function(snapshot) {
+        const registro = snapshot.val();
+
+        // Preencha o formulário com os dados do registro para edição
+        document.getElementById("matricula").value = registro.matricula;
+        document.getElementById("nome").value = registro.nome;
+        document.getElementById("filtro").value = registro.filtro;
+        document.getElementById("atestado").checked = registro.atestado;
+        document.getElementById("abono").checked = registro.abono;
+        document.getElementById("falta").checked = registro.falta;
+        document.getElementById("dataHoraInicial").value = moment(registro.dataHoraInicial).format("YYYY-MM-DDTHH:mm");
+        document.getElementById("dataHoraFinal").value = moment(registro.dataHoraFinal).format("YYYY-MM-DDTHH:mm");
+
+        // Atualize o botão de envio do formulário para permitir a edição
+        const submitButton = document.querySelector("input[type='submit']");
+        submitButton.value = "Editar Registro";
+        submitButton.onclick = function() {
+            // Implemente a lógica de atualização do registro com a chave 'key'
+            alert(`Editar registro com chave: ${key}`);
+        };
+    });
+}
+
+// Função para excluir um registro
+function excluirRegistro(key) {
+    // Confirme com o usuário antes de excluir o registro
+    if (confirm("Deseja realmente excluir este registro?")) {
+        const registroRef = database.ref(`registros/${key}`);
+        registroRef.remove(); // Isso irá excluir o registro no Firebase com a chave 'key'
+    }
+}
+
+// Função para pesquisar na tabela
+function pesquisarTabela() {
+    const input = document.getElementById("searchInput");
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("tabelaRegistros");
+    const tbody = table.querySelector("tbody"); // Obtenha o corpo da tabela
+    const rows = tbody.getElementsByTagName("tr");
+
+    for (let i = 0; i < rows.length; i++) {
+        const cells = rows[i].getElementsByTagName("td");
+        let found = false;
+
+        for (let j = 0; j < cells.length; j++) {
+            const cell = cells[j];
+            if (cell) {
+                const textValue = cell.textContent || cell.innerText;
+                if (textValue.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                    break;
+                }
+            }
+        }
+
+        if (found) {
+            rows[i].style.display = "";
+        } else {
+            rows[i].style.display = "none";
+        }
+    }
+}
+
+// filtrar dados por datas inicial e data final
+// Função para formatar uma data no formato "DD/MM/YYYY" para "YYYY-MM-DD"
+function formatarData(data) {
+    const partes = data.split("/");
+    if (partes.length === 3) {
+        const dia = partes[0];
+        const mes = partes[1];
+        const ano = partes[2];
+        return `${ano}-${mes}-${dia}`;
+    }
+    return data;
+}
+
+function filtrarPorDataHora() {
+    const dataInicial = formatarData(document.getElementById("dataInicial").value);
+    const dataFinal = formatarData(document.getElementById("dataFinal").value);
+
+    const registros = document.querySelectorAll("#corpoTabela tr");
+
+    registros.forEach((registro) => {
+        const dataRegistro = registro.querySelector("td:nth-child(6)").textContent; // Índice da coluna de data no seu conjunto de dados
+
+        // Verifique se a data do registro está dentro do intervalo selecionado
+        if (dataRegistro >= dataInicial && dataRegistro <= dataFinal) {
+            registro.style.display = "";
+        } else {
+            registro.style.display = "none";
+        }
+    });
+}
+    </script>
+</body>
+</html>
+
+

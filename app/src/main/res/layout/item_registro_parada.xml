@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- item_registro_parada.xml -->
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+
+    <!-- Campo: Frente -->
+        <TextView
+            android:id="@+id/textViewFrota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Frota"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewCategoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Categoria"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textViewFrente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Frente"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <!-- Campo: Fazenda -->
+        <TextView
+            android:id="@+id/textViewFazenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fazenda"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <!-- Campo: Frota -->
+
+        <!-- Campo: Motivo de Parada -->
+        <TextView
+            android:id="@+id/textViewMotivoParada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Motivo"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <!-- Campo: Data Inicial -->
+        <TextView
+            android:id="@+id/textViewDataInicial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data inicial "
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <!-- Campo: Data Final -->
+        <TextView
+            android:id="@+id/textViewDataFinal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Data final"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <!-- Campo: Observação -->
+        <TextView
+            android:id="@+id/textViewTempoParada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tempo de parada"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textViewObservacao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Observação"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    <!-- Campo: UID -->
+        <TextView
+            android:id="@+id/textViewUid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+    <!-- Campo: Email -->
+
+        <!-- Campo: Data/Hora -->
+        <TextView
+            android:id="@+id/textViewDataHora"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Data e hora dos dados "
+            android:textSize="18sp" />
+
+    <!-- Campo: Tempo de Parada -->
+
+        <TextView
+            android:id="@+id/textViewEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <!-- Campo: Número OS -->
+        <TextView
+            android:id="@+id/textViewNumeroOS"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Número OS"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

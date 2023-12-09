@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#539436</color>
+    <color name="purple_500">#539436</color>
+    <color name="purple_700">#539436</color>
+    <color name="teal_200">#539534</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="lavender">#8692f7</color>
+
+
+    <color name="plum_500">#33333e</color>
+    <color name="plum_700">#1D1D27</color>
+    <color name="orange_200">#ff8e4b</color>
+    <color name="orange_700">#ffff694a</color>
+    <color name="teal_500">#ff43d7dc</color>
+    <color name="black_200">#aaaaaa</color>
+    <color name="black_500">#303231</color>
+    <color name="black_900">#FF000000</color>
+    <color name="your_color">#4CAF50</color>
+
+
+
+    <!-- Defina um estilo para o Spinner personalizado -->
+    <style name="SpinnerStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/spinner_background</item> <!-- Define um fundo personalizado -->
+        <item name="android:paddingStart">16dp</item> <!-- Adicione um preenchimento à esquerda -->
+        <item name="android:paddingEnd">16dp</item> <!-- Adicione um preenchimento à direita -->
+    </style>
+
+</resources>

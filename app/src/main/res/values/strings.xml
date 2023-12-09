@@ -1,0 +1,84 @@
+<resources>
+    <string name="app_name">Operacional</string>
+    <string name="title_activity_usuario_logado">Usuario_logado</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Perfil</string>
+
+    <string name="menu_home">Operacional</string>
+    <string name="menu_gallery">Operacional</string>
+    <string name="menu_slideshow">Operacional</string>
+
+
+    <string-array name="opcoes_array">
+        <item>ANTAS</item>
+        <item>BOM SUCESSO</item>
+        <item>CACHOEIRNHA</item>
+        <item>CAMPANHA</item>>
+        <item>CANTO ALEGRE</item>
+        <item>CONCEIÇÃO</item>
+        <item>DUAS BOCAS</item>
+        <item>ELDORADO</item>
+        <item>JOSE DA COSTA</item>
+        <item>NOVO</item>
+        <item>ONCINHA</item>
+        <item>PAU SANGUE</item>
+        <item>PEDRA DE AMOLAR</item>
+        <item>PARAISO</item>
+        <item>PRIMAVERA</item>
+        <item>SANTA CRUZ I</item>
+        <item>SANTA CRUZ II</item>
+        <item>SANTA LUZIA</item>
+        <item>SÃO FELIX</item>
+        <item>TRIUNFO</item>
+        <item>VICENTE</item>
+        <item>OUTROS</item>
+    </string-array>
+
+
+    <string-array name="tipo_veiculo_array">
+        <item>Caminhão</item>
+        <item>Carregadeira</item>
+        <item>Colhedora</item>
+        <item>Bell</item>
+        <item>Trator</item>
+        <item>Patrol</item>
+    </string-array>
+
+    <string-array name="motivo_parada_array">
+        <item>Aguardando abastecimento</item>
+        <item>Aguardando embarque</item>
+        <item>Aguardando Socorro</item>
+        <item>Chuva</item>
+        <item>Falta de cana</item>
+        <item>Falta de combustivel</item>
+        <item>Falta de Operador</item>
+        <item>Solo Incharcado</item>
+        <item>Outros</item>
+    </string-array>
+
+    <string-array name="opcoes_arrayy">
+        <item>Selecione a Função  </item>
+        <item>Motorista </item>
+        <item>Tratorista</item>
+        <item>Op.Bell</item>
+        <item>Op.Carregadeira</item>
+        <item>Op.Colhedora</item>
+        <item>Op.Maquinas pesadas</item>
+        <item>Outros</item>
+    </string-array>
+
+
+    <string-array name="opcoes_arrayyy">
+        <item>Observações </item>
+        <item>Atestado</item>
+        <item>Abono </item>
+        <item>Falta</item>
+        <item>Férias</item>
+        <item>Suspenção</item>
+    </string-array>
+
+</resources>

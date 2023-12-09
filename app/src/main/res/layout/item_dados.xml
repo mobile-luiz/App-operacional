@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- res/layout/item_dados.xml -->
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imageViewImagem"
+            android:layout_width="72dp"
+            android:layout_height="100dp"
+            android:layout_marginEnd="16dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_launcherr_foreground" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewMatricula"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Matrícula: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textViewNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nome: " />
+
+            <TextView
+                android:id="@+id/textViewDataInicio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data de Início: " />
+
+            <TextView
+                android:id="@+id/textViewDataFinal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Final: " />
+
+            <TextView
+                android:id="@+id/textViewFuncao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Função: " />
+
+            <TextView
+                android:id="@+id/textViewObs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Observação: " />
+
+            <TextView
+                android:id="@+id/textViewDataHoraAtual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lançado em : " />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
+
+

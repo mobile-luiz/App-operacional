@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_stat_namei"
+            android:title="Inicio" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="Mapa" />
+
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/baseline_equalizer_24gra"
+            android:title="Produção toneladas" />
+
+        <item
+            android:id="@+id/nav_slideshoww"
+            android:icon="@drawable/baseline_add_chart_24hs"
+            android:title="Relatório Hs paradas " />
+
+        <item
+            android:id="@+id/nav_slideshowww"
+            android:icon="@drawable/baseline_clear_24sair"
+            android:title="Sair" />
+    </group>
+</menu>

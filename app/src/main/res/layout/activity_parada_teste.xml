@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:padding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextFrota"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:hint="Frota"
+                android:textSize="20sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Categoria"
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinnerTipoVeiculo"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:entries="@array/tipo_veiculo_array"
+            android:spinnerMode="dialog" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Frentes"
+            android:textSize="20sp" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButtonA1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A-1" />
+
+            <RadioButton
+                android:id="@+id/radioButtonA2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A-2" />
+
+            <RadioButton
+                android:id="@+id/radioButtonB1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B-1" />
+
+            <RadioButton
+                android:id="@+id/radioButtonB2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B-2" />
+
+            <RadioButton
+                android:id="@+id/radioButtonF5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="F-5"
+                android:visibility="gone" />
+
+            <RadioButton
+                android:id="@+id/radioButtonCM"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CM" />
+
+            <RadioButton
+                android:id="@+id/radioButtonOutros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outros"
+                android:visibility="gone" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/textView15"
+            android:textSize="20sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Fazendas" />
+
+        <Spinner
+            android:id="@+id/spinnerFazenda"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:entries="@array/opcoes_array"
+            android:spinnerMode="dialog" />
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/textViewMotivoParada"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Motivo da Parada" />
+
+        <Spinner
+            android:id="@+id/spinnerMotivoParada"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:entries="@array/motivo_parada_array"
+            android:spinnerMode="dialog" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextDataInicial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data e Horário Inicial" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextDataFinal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Data e Horário Final" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextNumeroOS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ordem de Serviço"
+                android:inputType="number" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/editTextObservacao"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:hint="Observação" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/textViewTempoParada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tempo de parada:"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonEnviar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enviar" />
+
+        <Button
+            android:id="@+id/lacan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Visualizar lançamentos" />
+
+        <Button
+            android:id="@+id/infor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+
+</ScrollView>
+
